@@ -38,7 +38,7 @@ const IndexPage = () => {
 			<div className="bg-gradient-to-b from-slate-800 to-slate-700 h-screen flex items-center">
 				<div className="container mx-auto px-4 py-16 mt-[-5em]">
 					<div className="flex flex-col items-center justify-center gap-8 p-10">
-						<h1 className="text-8xl font-bold handwriting text-[#b8d2ff] text-center">Site under renovation.</h1>
+						<h1 className="text-6xl lg:text-8xl font-bold handwriting text-[#b8d2ff] text-center">Site under renovation.</h1>
 					</div>
 				</div>
 			</div>
