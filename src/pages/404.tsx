@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import { Helmet } from "react-helmet"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -30,7 +30,10 @@ export const footerLinks = [
 const NotFoundPage = () => {
   return (
 		<main className="flex-row font-sans text-gray-200 min-h-screen">
-			<title>bensaine.com</title>
+      <Helmet  htmlAttributes={{lang: 'en'}}>
+				<meta charSet="utf-8" />
+				<title>Not Found | bensaine.com</title>
+			</Helmet>
 			<div className="bg-gradient-to-b from-slate-800 to-slate-700 h-screen flex items-center">
 				<div className="container mx-auto px-4 py-16 mt-[-5em]">
 					<div className="flex flex-col items-center justify-center gap-8 p-10">

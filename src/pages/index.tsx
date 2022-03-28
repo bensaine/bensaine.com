@@ -1,4 +1,5 @@
 import * as React from "react"
+import { Helmet } from "react-helmet"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
@@ -29,7 +30,11 @@ export const footerLinks = [
 const IndexPage = () => {
 	return (
 		<main className="flex-row font-sans text-gray-200 min-h-screen">
-			<title>bensaine.com</title>
+			<Helmet htmlAttributes={{lang: 'en'}}>
+				<meta charSet="utf-8" />
+				<title>Ben Saine | bensaine.com</title>
+				<meta name="description" content="I am a full stack developer located in Montreal, Canada with a passion for problem solving."/>
+			</Helmet>
 			<div className="bg-gradient-to-b from-slate-800 to-slate-700 h-screen flex items-center">
 				<div className="container mx-auto px-4 py-16 mt-[-5em]">
 					<div className="flex flex-col items-center justify-center gap-8 p-10">
@@ -45,7 +50,7 @@ const IndexPage = () => {
 				<div className="flex justify-between">	
 					{footerLinks.map((link) => (
 						<div key={link.name} className="rounded-full leading-[initial] cursor-pointer bg-gradient-to-br from-gray-600 to-gray-800 p-2 mx-1">
-							<a href={link.url} target="_blank" className="text-white opacity-90">
+							<a href={link.url} aria-label={link.name} target="_blank" className="text-white opacity-90">
 								<FontAwesomeIcon icon={link.icon as IconProp} size="1x" fixedWidth/>
 							</a>
 						</div>
