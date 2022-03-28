@@ -2,10 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&family=Reenie+Beanie&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap');
 
 @layer base {
     .handwriting {
-        font-family: 'Montserrat', sans-serif;
+        font-family: 'Lora', serif;
+        text-shadow: 11px 4px 20px #03193eba;
     }
 }

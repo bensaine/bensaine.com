@@ -7,7 +7,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 library.add(fas, far, fab)
 
-const footerLinks = [
+export const footerLinks = [
 	{
 		name: "github",
 		url: "https:/github.com/bensaine",
@@ -29,28 +29,12 @@ const footerLinks = [
 const IndexPage = () => {
 	return (
 		<main className="flex-row font-sans text-gray-200 min-h-screen">
-			<title>Home Page</title>
+			<title>bensaine.com</title>
 			<div className="bg-gradient-to-b from-slate-800 to-slate-700 h-screen flex items-center">
-				<div className="container mx-auto px-4 py-16">
-					<div className="flex items-end justify-center bg-gradient-to-br from-white/80 to-white/10 backdrop-blur-lg rounded-xl border-2 p-10">
-						<h1 className="text-8xl font-bold handwriting drop-shadow-lg text-transparent bg-clip-text bg-gradient-to-br from-[#66acee] to-[#0075ff]">Ben Saine</h1>
-						<p className="text-2xl flex items-center">I am a full stack developer located in&nbsp; 
-						<span className="inline-block bg-orange-50 opacity-80 text-gray-800 mx-1 py-1 px-2 rounded-lg font-mono text-sm">
-							<FontAwesomeIcon icon={["fas", "location-dot"] as IconProp} className="text-[#f03a3a]"/>
-							&nbsp;Montreal, Canada
-						</span> 
-						&nbsp;with a passion for problem solving.</p>
+				<div className="container mx-auto px-4 py-16 mt-[-5em]">
+					<div className="flex flex-col items-center justify-center gap-8 p-10">
+						<h1 className="text-8xl font-bold handwriting text-[#b8d2ff] text-center">Site under renovation.</h1>
 					</div>
-				</div>
-			</div>
-			<div className="bg-gradient-to-b from-slate-700 to-slate-600">
-				<div className="container mx-auto px-4 py-16">
-					<h2 className="text-2xl font-bold">My skills</h2>
-				</div>
-			</div>
-			<div className="bg-gradient-to-b from-slate-600 to-slate-500 h-screen">
-				<div className="container mx-auto px-4 py-16">
-					<h2 className="text-2xl font-bold">My projects</h2>
 				</div>
 			</div>
 			<div className="flex flex-col justify-between fixed bottom-0 right-0 p-2 group hover:h-24 rounded-tl-xl bg-gradient-to-br from-gray-800 to-gray-900 bg-opacity-20 backdrop-blur-xl">
