@@ -11,7 +11,7 @@ library.add(fas, far, fab)
 export const footerLinks = [
 	{
 		name: "github",
-		url: "https:/github.com/bensaine",
+		url: "https://github.com/bensaine",
 		icon: ['fab', 'github'],
 	},
 	{
