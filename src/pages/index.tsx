@@ -21,7 +21,7 @@ export const footerLinks = [
 	},
 	{
 		name: "email",
-		url: "mailto:bensaine09@gmail.com",
+		url: "",
 		icon: ['fas', 'envelope'],
 	},
 ]
@@ -42,11 +42,7 @@ const IndexPage = () => {
 					</div>
 				</div>
 			</div>
-			<div className="flex flex-col justify-between fixed bottom-0 right-0 p-2 group hover:h-24 rounded-tl-xl bg-gradient-to-br from-gray-800 to-gray-900 bg-opacity-20 backdrop-blur-xl">
-				<div className="hidden group-hover:flex items-center justify-center">
-					<FontAwesomeIcon icon={["fas", "link"] as IconProp} fixedWidth/>
-					<span className="text-center handwriting text-xl ml-2"> Links</span>
-				</div>
+			<div className="flex flex-col justify-between fixed bottom-0 right-0 p-2 rounded-tl-xl bg-gradient-to-br from-gray-800 to-gray-900 bg-opacity-20 backdrop-blur-xl">
 				<div className="flex justify-between">	
 					{footerLinks.map((link) => (
 						<div key={link.name} className="rounded-full leading-[initial] cursor-pointer bg-gradient-to-br from-gray-600 to-gray-800 p-2 mx-1">
