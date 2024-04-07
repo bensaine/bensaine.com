@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css?family=Lora');
-@import url('https://fonts.googleapis.com/css?family=Inter');
+@import url("https://fonts.googleapis.com/css?family=Lora");
+@import url("https://fonts.googleapis.com/css?family=Inter");
 
 @layer base {
 	body {
@@ -14,9 +14,7 @@
 	}
 
 	.handwriting {
-		font-family: "Lora", serif;
-		font-weight: 700;
-		font-style: italic;
+		font-family: "Lora", Georgia, serif;
 		text-shadow: 11px 4px 20px #03193eba;
 	}
 }
