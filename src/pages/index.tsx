@@ -44,7 +44,7 @@ const IndexPage = () => {
 			<main className="flex-row font-sans text-gray-200 min-h-screen overflow-hidden">
 				<div className="bg-gradient-to-b from-slate-800 to-slate-700 h-screen flex items-center">
 					<div className="container mx-auto px-4 py-12 mt-[-5em]">
-						<div className="flex flex-col items-center justify-center gap-8 p-10">
+						<div className="flex flex-col items-center justify-center gap-8 p-10 md:pb-24 pb-36">
 							<h1 className="text-6xl lg:text-8xl font-bold handwriting text-[#b8d2ff] text-center">Hi, I'm Ben.</h1>
 							<h2 className="text-xl lg:text-2xl text-center">
 								Make yourself at home. Still quite empty in here — currently out and about getting some furniture.
@@ -56,10 +56,10 @@ const IndexPage = () => {
 				<span className="absolute right-16 bottom-14">
 					<img src={Links} alt="My links" className="w-44 select-none pointer-events-none" />
 				</span>
-				<span className="absolute left-44 bottom-28">
+				<span className="absolute md:left-44 md:bottom-28 left-24 bottom-44">
 					<img src={Couch} alt="A couch, at least..." className="w-44 select-none pointer-events-none" />
 				</span>
-				<span className="absolute left-28 bottom-20 text-5xl select-none pointer-events-none">🛋️</span>
+				<span className="absolute  md:left-28  md:bottom-20 left-10 bottom-36 text-5xl select-none pointer-events-none">🛋️</span>
 				<div className="flex flex-col justify-between fixed bottom-0 right-0 p-2 rounded-tl-xl bg-gradient-to-br from-gray-800 to-gray-900 bg-opacity-20 backdrop-blur-xl">
 					<div className="flex justify-between">
 						{footerLinks.map((link) => (
