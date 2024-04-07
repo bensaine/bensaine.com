@@ -54,10 +54,14 @@ const IndexPage = () => {
 					</div>
 				</div>
 				<span className="absolute right-16 bottom-14">
-					<img src={Links} alt="My links" className="w-44 select-none pointer-events-none" />
+					<object className="w-44 select-none pointer-events-none" type="image/svg+xml" data={Links}>
+						My links
+					</object>
 				</span>
 				<span className="absolute md:left-44 md:bottom-28 left-24 bottom-44">
-					<img src={Couch} alt="A couch, at least..." className="w-44 select-none pointer-events-none" />
+					<object className="w-44 select-none pointer-events-none" type="image/svg+xml" data={Couch}>
+						A couch, at least...
+					</object>
 				</span>
 				<span className="absolute  md:left-28  md:bottom-20 left-10 bottom-36 text-5xl select-none pointer-events-none">🛋️</span>
 				<div className="flex flex-col justify-between fixed bottom-0 right-0 p-2 rounded-tl-xl bg-gradient-to-br from-gray-800 to-gray-900 bg-opacity-20 backdrop-blur-xl">
