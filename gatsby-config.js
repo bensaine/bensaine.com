@@ -41,7 +41,7 @@ module.exports = {
 				web: [
 					{
 						name: `Lora`,
-						file: `https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap`,
+						file: `https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap`,
 					},
 					{
 						name: `Inter`,
