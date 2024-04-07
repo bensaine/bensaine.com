@@ -58,12 +58,12 @@ const IndexPage = () => {
 						My links
 					</object>
 				</span>
-				<span className="absolute md:left-44 md:bottom-28 left-24 bottom-44">
+				<span className="absolute left-24 bottom-44 hidden sm:block">
 					<object className="w-44 select-none pointer-events-none" type="image/svg+xml" data={Couch}>
 						A couch, at least...
 					</object>
 				</span>
-				<span className="absolute  md:left-28  md:bottom-20 left-10 bottom-36 text-5xl select-none pointer-events-none">🛋️</span>
+				<span className="absolute hidden sm:block left-10 bottom-36 text-5xl select-none pointer-events-none">🛋️</span>
 				<div className="flex flex-col justify-between fixed bottom-0 right-0 p-2 rounded-tl-xl bg-gradient-to-br from-gray-800 to-gray-900 bg-opacity-20 backdrop-blur-xl">
 					<div className="flex justify-between">
 						{footerLinks.map((link) => (
