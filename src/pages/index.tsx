@@ -41,11 +41,11 @@ const IndexPage = () => {
 	return (
 		<>
 			{/* <SplashScreen /> */}
-			<main className="flex-row font-sans text-gray-200 min-h-screen overflow-hidden">
+			<main className="flex-row font-sans text-gray-200 h-screen overflow-hidden">
 				<div className="bg-gradient-to-b from-slate-800 to-slate-700 h-screen flex items-center">
 					<div className="container mx-auto px-4 py-12 mt-[-5em]">
 						<div className="flex flex-col items-center justify-center gap-8 p-10 md:pb-24 pb-36">
-							<h1 className="text-6xl lg:text-8xl font-bold handwriting text-[#b8d2ff] text-center">Hi, I'm Ben.</h1>
+							<h1 className="text-6xl lg:text-8xl handwriting text-[#b8d2ff] text-center">Hi, I'm Ben.</h1>
 							<h2 className="text-xl lg:text-2xl text-center">
 								Make yourself at home. Still quite empty in here — currently out and about getting some furniture.
 								<br /> Check back soon!
