@@ -14,7 +14,7 @@ export const footerLinks = [
 	},
 	{
 		name: "linkedin",
-		url: "https://www.linkedin.com/in/benjamin-saine",
+		url: "https://www.linkedin.com/in/ben-saine",
 		icon: ["fab", "linkedin"],
 	},
 	{
