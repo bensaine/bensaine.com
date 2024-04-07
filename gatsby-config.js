@@ -33,5 +33,22 @@ module.exports = {
 			},
 			__key: "pages",
 		},
+		{
+			resolve: `gatsby-omni-font-loader`,
+			options: {
+				enableListener: true,
+				preconnect: [`https://fonts.googleapis.com`, `https://fonts.gstatic.com`],
+				web: [
+					{
+						name: `Lora`,
+						file: `https://fonts.googleapis.com/css2?family=Lora:ital@1&display=swap`,
+					},
+					{
+						name: `Inter`,
+						file: `https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap`,
+					},
+				],
+			},
+		},
 	],
 }
