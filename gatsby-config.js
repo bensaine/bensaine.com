@@ -36,8 +36,10 @@ module.exports = {
 		{
 			resolve: `gatsby-omni-font-loader`,
 			options: {
+				mode: "render-blocking",
 				enableListener: true,
 				preconnect: [`https://fonts.googleapis.com`, `https://fonts.gstatic.com`],
+				preload: ["https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&display=swap"],
 				web: [
 					{
 						name: `Lora`,
