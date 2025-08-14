@@ -4,8 +4,8 @@ import { fab } from "@fortawesome/free-brands-svg-icons"
 import { far } from "@fortawesome/free-regular-svg-icons"
 import { fas } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import Links from "/links.svg"
-import Couch from "/couch.svg"
+import Links from "./assets/links.svg"
+import Couch from "./assets/couch.svg"
 
 library.add(fas, far, fab)
 
