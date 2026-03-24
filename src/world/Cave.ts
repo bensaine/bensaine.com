@@ -57,6 +57,59 @@ function noise(x: number, y: number, z: number): number {
   return n - Math.floor(n);
 }
 
+function fbm(x: number, y: number, octaves = 5): number {
+  let v = 0, amp = 0.5, freq = 1, max = 0;
+  for (let i = 0; i < octaves; i++) {
+    v += noise(x * freq, y * freq, i * 7.3) * amp;
+    max += amp; amp *= 0.5; freq *= 2.1;
+  }
+  return v / max;
+}
+
+// Greyscale modulation map: pixel value 255 = no change to material color.
+// blend controls how dark the darkest spots get (0 = flat white, 1 = full range).
+function makeStoneModulationTexture(size = 512, blend = 0.10): THREE.CanvasTexture {
+  const canvas = document.createElement('canvas');
+  canvas.width = canvas.height = size;
+  const ctx = canvas.getContext('2d')!;
+  const img = ctx.createImageData(size, size);
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      const n = fbm(x / size * 3, y / size * 3);
+      const crack = fbm(x / size * 6 + 10, y / size * 6 + 10);
+      const dark = crack < 0.38 ? 0.6 : 1.0;
+      // v=1 means no change; v<1 darkens the base color
+      const v = Math.floor(255 * (1 - blend * (1 - n * dark)));
+      const i = (y * size + x) * 4;
+      img.data[i] = img.data[i+1] = img.data[i+2] = v;
+      img.data[i+3] = 255;
+    }
+  }
+  ctx.putImageData(img, 0, 0);
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  return tex;
+}
+
+function makeStoneBumpTexture(size = 512): THREE.CanvasTexture {
+  const canvas = document.createElement('canvas');
+  canvas.width = canvas.height = size;
+  const ctx = canvas.getContext('2d')!;
+  const img = ctx.createImageData(size, size);
+  for (let y = 0; y < size; y++) {
+    for (let x = 0; x < size; x++) {
+      const n = fbm(x / size * 5 + 3, y / size * 5 + 3, 4);
+      const v = Math.floor(n * 255);
+      const i = (y * size + x) * 4;
+      img.data[i] = v; img.data[i+1] = v; img.data[i+2] = v; img.data[i+3] = 255;
+    }
+  }
+  ctx.putImageData(img, 0, 0);
+  const tex = new THREE.CanvasTexture(canvas);
+  tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+  return tex;
+}
+
 export class Cave {
   readonly group = new THREE.Group();
 
@@ -107,6 +160,7 @@ export class Cave {
     const ringCount = rings.length;
     const vertCount = ringCount * RADIAL_SEGMENTS;
     const positions = new Float32Array(vertCount * 3);
+    const uvs = new Float32Array(vertCount * 2);
 
     for (let ri = 0; ri < ringCount; ri++) {
       const { z, radius, cx, cy } = rings[ri];
@@ -128,6 +182,10 @@ export class Cave {
         positions[idx]     = x;
         positions[idx + 1] = y;
         positions[idx + 2] = z;
+
+        const uvi = (ri * RADIAL_SEGMENTS + ai) * 2;
+        uvs[uvi]     = ai / RADIAL_SEGMENTS;
+        uvs[uvi + 1] = ri / (ringCount - 1);
       }
     }
 
@@ -152,9 +210,17 @@ export class Cave {
       }
     }
 
+    const modTex = makeStoneModulationTexture();
+    modTex.repeat.set(4, 12);
+    const bumpTex = makeStoneBumpTexture();
+    bumpTex.repeat.set(4, 12);
+
     const geo = new THREE.BufferGeometry();
     const mat = new THREE.MeshStandardMaterial({
       color: 0x1a1510,
+      map: modTex,
+      bumpMap: bumpTex,
+      bumpScale: 0.4,
       roughness: 1,
       metalness: 0,
       side: THREE.DoubleSide,
@@ -181,7 +247,14 @@ export class Cave {
     allIndices.set(indices);
     allIndices.set(fanIndices, indices.length);
 
+    // Pad UVs with a dummy entry for the pole vertex
+    const allUvs = new Float32Array(uvs.length + 2);
+    allUvs.set(uvs);
+    allUvs[uvs.length]     = 0.5;
+    allUvs[uvs.length + 1] = 0;
+
     geo.setAttribute('position', new THREE.BufferAttribute(allPos, 3));
+    geo.setAttribute('uv', new THREE.BufferAttribute(allUvs, 2));
     geo.setIndex(new THREE.BufferAttribute(allIndices, 1));
     geo.computeVertexNormals();
 
@@ -196,9 +269,14 @@ export class Cave {
     const length = zMax - zMin;
     const width = PROFILE[PROFILE.length - 1][1] * 2;
 
+    const floorMod = makeStoneModulationTexture(512, 0.10);
+    floorMod.repeat.set(8, 20);
+    const floorBump = makeStoneBumpTexture();
+    floorBump.repeat.set(8, 20);
+
     const floor = new THREE.Mesh(
       new THREE.PlaneGeometry(width, length),
-      new THREE.MeshStandardMaterial({ color: 0x110d0a, roughness: 1 }),
+      new THREE.MeshStandardMaterial({ color: 0x110d0a, map: floorMod, bumpMap: floorBump, bumpScale: 0.3, roughness: 1 }),
     );
     floor.rotation.x = -Math.PI / 2;
     floor.position.y = FLOOR_Y;
@@ -211,8 +289,11 @@ export class Cave {
     // Low stone ridge at z=-22 — the barrier between the prisoners and the objects
     // A rough box spanning the cave width
     const ridgeGeo = new THREE.BoxGeometry(10, 1.5, 2);
+    const ridgeMod = makeStoneModulationTexture(256, 0.10);
+    ridgeMod.repeat.set(2, 1);
     const ridgeMat = new THREE.MeshStandardMaterial({
       color: 0x1e1812,
+      map: ridgeMod,
       roughness: 1,
     });
     const ridge = new THREE.Mesh(ridgeGeo, ridgeMat);

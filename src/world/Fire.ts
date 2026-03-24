@@ -9,9 +9,9 @@ function makeSprite(): THREE.Texture {
   canvas.height = size;
   const ctx = canvas.getContext('2d')!;
   const grad = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
-  grad.addColorStop(0, 'rgba(255,255,255,1)');
-  grad.addColorStop(0.4, 'rgba(255,200,80,0.6)');
-  grad.addColorStop(1, 'rgba(255,80,0,0)');
+  grad.addColorStop(0, 'rgba(255,255,200,1)');
+  grad.addColorStop(0.3, 'rgba(255,80,20,0.8)');
+  grad.addColorStop(1, 'rgba(200,10,0,0)');
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, size, size);
   return new THREE.CanvasTexture(canvas);
